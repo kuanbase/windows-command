@@ -1,15 +1,11 @@
 use std::fs;
-use std::process;
 
 fn main() {
-
     let args = std::env::args().collect::<Vec<String>>();
 
-    if args.len() < 2 {
-        usage();
-    }
+    let root_path = String::from("./");
 
-    let path = args.get(1);
+    let path = if args.len() < 2 { Some(&root_path) } else { args.get(1) };
 
     let path = path.unwrap();
 
@@ -20,9 +16,4 @@ fn main() {
     }
 
     println!("Hello, world!");
-}
-
-fn usage() {
-    println!("Usage: dir [<empty> | <path>]");
-    process::exit(1);
 }
